@@ -32,6 +32,20 @@ def get_quote():
 
 quote, author = get_quote()
 
+def get_joke():
+  url = "https://official-joke-api.appspot.com/jokes/random"
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            setup = data["setup"]
+            punchline = data["punchline"]
+            return setup, punchline
+          else:
+            return "Why do programmers wear glasses?", "Because they can't C#."
+    except Exception:
+        return "Why do programmers wear glasses?", "Because they can't C#."
+
 # print to cl to test code
 print("quote")
 print(quote)
