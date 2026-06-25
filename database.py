@@ -1,5 +1,5 @@
 # pandas for table creations
-import pandas as pandas
+import pandas as pd
 # retrieves & saves to db
 import sqlalchemy as db
 engine = db.create_engine("sqlite:///moodlift.db")

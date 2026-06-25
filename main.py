@@ -20,4 +20,5 @@ def main():
     else:
        print("invalid choice")
 
+# 1. start the program
 main()
