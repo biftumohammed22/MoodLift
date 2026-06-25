@@ -32,6 +32,7 @@ def get_quote():
 
 quote, author = get_quote()
 
+# print to cl to test code
 print("quote")
 print(quote)
 
