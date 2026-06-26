@@ -46,12 +46,11 @@ def get_joke():
   except Exception:
     return "Why do programmers wear glasses?", "Because they can't C#."
 
-# print to cl to test code
-print("quote")
-print(quote)
+if __name__ == "__main__":
+    quote, author = get_quote()
+    # print to cl to test code
+    print("quote")
+    print(quote)
 
-print("author:")
-print(author)
-
-
-
+    print("author:")
+    print(author)

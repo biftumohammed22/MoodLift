@@ -25,7 +25,7 @@ def save_favorite(item_type, content, author=""):
   }
 
   # convert dictionary to pandas dateframe
-  df = pd.dateframe.from_dict(favorite_dict )
+  df = pd.DataFrame.from_dict(favorite_dict)
 
   # date frame format to sql table
   df.to_sql(
@@ -35,13 +35,19 @@ def save_favorite(item_type, content, author=""):
     index=False
   )
 
-  def view_favorites():
-    with engine.connect() as connection:
-      result = connection.execute(
-        db.text("SELECT* FROM favorites;")
-      ).fetchall()
-
-      return result
+def view_favorites():
+  try:
+      df = pd.read_sql_query("SELECT * FROM favorites;", con=engine)
+      if df.empty:
+        print("Your saved list is empty.")
+      else:
+          print("+------------------------------------------------------+")
+          print("|                   YOUR FAVORITES                     |")
+          print("+------------------------------------------------------+")
+          print(df[["type", "content", "author"]].to_string(index=False))
+          print("+------------------------------------------------------+")
+  except Exception:
+      print("No favorites found yet! Save something first.")
 
       # print(pd.DataFrame(result))
 
