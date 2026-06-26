@@ -1,5 +1,5 @@
 from api_client import get_quote, get_joke
-from database import save_favorite, view_favorites  #Imports the functions within the database.py file
+from database import save_favorite, view_favorites, delete_favorite  #Imports the functions within the database.py file
 
 def main():
   while True:
@@ -12,7 +12,7 @@ def main():
     print("")
     print("Please choose an option:")
     print(" 1. Get a quote")
-    print(" 2. View Saved Favorites")
+    print(" 2. View/Manage Saved Favorites")
     print(" 3. Exit")
 
     choice = input("Choose an option:")
@@ -41,6 +41,13 @@ def main():
 
     elif choice == "2":
        view_favorites()
+       manage_choice = input("Would you like to delete an item? (yes/no): ").strip().lower()
+       if manage_choice == "yes" or manage_choice == "y":
+           try:
+               id_Delete = int(input("Enter the ID number of the item to delete: "))
+               delete_favorite(id_Delete)
+           except ValueError:
+               print("Invalid input. Please enter a valid number ID.")
 
     elif choice == "3":
        print("+-----------------------+")

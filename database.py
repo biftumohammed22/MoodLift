@@ -34,22 +34,31 @@ def save_favorite(item_type, content, author=""):
     if_exists="append",
     index=False
   )
+  print(f"★ Successfully saved this {item_type} to favorites!")
 
 def view_favorites():
   try:
-      df = pd.read_sql_query("SELECT * FROM favorites;", con=engine)
-      if df.empty:
-        print("Your saved list is empty.")
-      else:
-          print("+------------------------------------------------------+")
-          print("|                   YOUR FAVORITES                     |")
-          print("+------------------------------------------------------+")
-          print(df[["type", "content", "author"]].to_string(index=False))
-          print("+------------------------------------------------------+")
-  except Exception:
-      print("No favorites found yet! Save something first.")
+    df = pd.read_sql_query("SELECT * FROM favorites;", con=engine)
+    if df.empty:
+        print("Your saved favorites list is empty.")
+    else:
+        pd.set_option('display.max_colwidth', 50)  # Fixing sizing error i Ran into with the CLI
+        pd.set_option('display.width', 1000)
 
-      # print(pd.DataFrame(result))
+        print("================= YOUR SAVED FAVORITES =================")
+        print(df[["id", "type", "content", "author"]].to_string(index=False))
+        print("========================================================")
+  except Exception:
+    print("No favorites found yet! Save something first.")
+  
+def delete_favorite(favorite_id):
+    with engine.connect() as connection:
+        connection.execute(
+            db.text("DELETE FROM favorites WHERE id = :id;"),
+            {"id": favorite_id}
+        )
+        connection.commit()
+    print(f" Successfully deleted favorite #{favorite_id}!")
 
 create_tables()
 
