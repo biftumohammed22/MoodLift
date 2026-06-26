@@ -12,9 +12,9 @@ def main():
        quote, author = get_quote()
        joke_setup, joke_punchline = get_joke()
        print('Here is the quote:')
-       print({quote})
-       print("-{author}")
-       print("-" * 30) # A clean separator line :D
+       print(f"{quote}")
+       print(f"- {author}")
+       print("-" * 50) # A clean separator line :D
 
        # Printing the joke portion
        print("Here is a joke to make you smile:")
