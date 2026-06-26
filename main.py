@@ -2,11 +2,11 @@ from api_client import get_quote, get_joke
 
 def main():
   while True:
-    print("Welcome to Moodlift")
-    print("1.get a quote")
-    print("2.Exit")
+    print("Welcome to Moodlift!")
+    print("1. Get a quote")
+    print("2. Exit")
 
-    choice = input("choose an option:")
+    choice = input("Choose an option:")
 
     if choice == "1":
        quote, author = get_quote()
@@ -25,6 +25,6 @@ def main():
        print("Goodbye!")
        break
     else:
-       print("invalid choice")
+       print("Invalid choice")
 
 main()
